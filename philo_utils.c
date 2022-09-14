@@ -6,7 +6,7 @@
 /*   By: mbelbiad <mbelbiad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 04:09:46 by mbelbiad          #+#    #+#             */
-/*   Updated: 2022/09/13 22:50:59 by mbelbiad         ###   ########.fr       */
+/*   Updated: 2022/09/14 23:28:55 by mbelbiad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void    ft_init_threads(char **av, t_philo *phi, int ac, pthread_mutex_t *p)
 	
 	i = -1;
 	phi[0].l_eat = malloc(sizeof(pthread_mutex_t));
+	phi[0].ph = malloc(sizeof(pthread_t) * atoi(av[1]));
 	pthread_mutex_init(phi[0].l_eat, NULL);
 	phi[0].n_eat = malloc(sizeof(pthread_mutex_t));
 	pthread_mutex_init(phi[0].n_eat, NULL);
@@ -80,7 +81,8 @@ void    ft_init_threads(char **av, t_philo *phi, int ac, pthread_mutex_t *p)
 		if (i > 0)
 			phi[i].l_eat = phi[0].l_eat;
 		if (i > 0)
-			phi[i].n_eat = phi[0].n_eat; 
+			phi[i].n_eat = phi[0].n_eat;
+		phi[i].ph = phi[0].ph;
 		phi[i].eat = 0;
 		phi[i].last_eat = phi[i].start;
 	}

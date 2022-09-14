@@ -6,7 +6,7 @@
 /*   By: mbelbiad <mbelbiad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 02:21:02 by mbelbiad          #+#    #+#             */
-/*   Updated: 2022/09/14 12:19:40 by mbelbiad         ###   ########.fr       */
+/*   Updated: 2022/09/14 23:13:51 by mbelbiad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct t_philo
 	int				eat;
 	int				check_death;
 	int				chk_print;
+	pthread_t		ph;
 	pthread_mutex_t	*print;
 	pthread_mutex_t *l_eat;
 	pthread_mutex_t *n_eat;

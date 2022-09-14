@@ -6,7 +6,7 @@
 /*   By: mbelbiad <mbelbiad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 21:25:12 by mbelbiad          #+#    #+#             */
-/*   Updated: 2022/09/14 14:10:22 by mbelbiad         ###   ########.fr       */
+/*   Updated: 2022/09/14 23:31:30 by mbelbiad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,30 +108,37 @@ void	*test(void *philo)
 
 void	ft_pthread(t_philo *phi)
 {
-	pthread_t	ph[2];
+	//pthread_t	ph;
 	int			i;
 
 	i = 0;
-	while (i < phi->num_philos)
-	{
-		pthread_create(&ph[i], NULL, &test, &phi[i]);
-		usleep(phi->num_philos * 50);
-		i += 1;
-		//pthread_join(ph, NULL);
-	}
-	// i = 1;
+	//ph = malloc(sizeof(pthread_t) * phi->num_philos);
+	// phi[0].ph = malloc(sizeof(pthread_t));
 	// while (i < phi->num_philos)
 	// {
-	// 	pthread_create(ph[i], NULL, &test, &phi[i]);
-	// 	i += 2;
-	// 	//pthread_join(ph, NULL);
+	// 	phi[i].ph = ph;
 	// }
+	while (i < phi->num_philos)
+	{
+		pthread_create(&phi[i].ph, NULL, &test, &phi[i]);
+		i += 2;
+		//pthread_join(phi[i].ph, NULL);
+	}
+	//usleep(phi->num_philos * 50);
+	i = 1;
+	while (i < phi->num_philos)
+	{
+		pthread_create(&phi[i].ph, NULL, &test, &phi[i]);
+		i += 2;
+		//pthread_join(ph, NULL);
+	}
+	usleep(phi->num_philos * 50);
 	// if (phi->num_philos > 0)
 	// 	ft_check_death(phi);
 	i = 0;
-	while(i < phi->num_of_eating)
+	while(i < phi->num_philos)
 	{
-		pthread_join(ph[i],NULL);
+		pthread_join(phi[i].ph, NULL);
 		i++;
 	}
 	// // i = 0;
