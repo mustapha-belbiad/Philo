@@ -6,7 +6,7 @@
 /*   By: mbelbiad <mbelbiad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 21:25:12 by mbelbiad          #+#    #+#             */
-/*   Updated: 2022/09/14 23:31:30 by mbelbiad         ###   ########.fr       */
+/*   Updated: 2022/09/15 23:21:40 by mbelbiad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,27 +121,27 @@ void	ft_pthread(t_philo *phi)
 	while (i < phi->num_philos)
 	{
 		pthread_create(&phi[i].ph, NULL, &test, &phi[i]);
-		i += 2;
+		usleep(60);
+		i += 1;
 		//pthread_join(phi[i].ph, NULL);
 	}
-	//usleep(phi->num_philos * 50);
-	i = 1;
-	while (i < phi->num_philos)
-	{
-		pthread_create(&phi[i].ph, NULL, &test, &phi[i]);
-		i += 2;
-		//pthread_join(ph, NULL);
-	}
-	usleep(phi->num_philos * 50);
+	// usleep(60);
+	// i = 1;
+	// while (i < phi->num_philos)
+	// {
+	// 	pthread_create(&phi[i].ph, NULL, &test, &phi[i]);
+	// 	i += 2;
+	// 	//pthread_join(ph, NULL);
+	// }
 	// if (phi->num_philos > 0)
 	// 	ft_check_death(phi);
-	i = 0;
-	while(i < phi->num_philos)
-	{
-		pthread_join(phi[i].ph, NULL);
-		i++;
-	}
-	// // i = 0;
+	//  i = 0;
+	// while(i < phi->num_philos)
+	// {
+	// 	pthread_join(phi[i].ph, NULL);
+	// 	i++;
+	// }
+	// i = 0;
 	// while(i < phi->num_of_eating)
 	// {
 	// 	pthread_mutex_destroy(phi[i].fork);

@@ -6,7 +6,7 @@
 /*   By: mbelbiad <mbelbiad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 02:58:45 by mbelbiad          #+#    #+#             */
-/*   Updated: 2022/09/14 23:40:03 by mbelbiad         ###   ########.fr       */
+/*   Updated: 2022/09/15 23:27:29 by mbelbiad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,12 @@ int ft_check_eating(t_philo *phi)
 		pthread_mutex_unlock(phi[i].n_eat);
 		i++;
 	}
+	i = 0;
+	while(i < phi->num_philos)
+	{
+		pthread_join(phi[i].ph, NULL);
+		i++;
+	}
 	return (0);
 }
 int ft_check_death(t_philo *phi)
@@ -156,6 +162,8 @@ int ft_check_death(t_philo *phi)
 			pthread_mutex_unlock(phi[i].l_eat);
 			pthread_mutex_lock(phi->print);
 			printf("%ld philo %d is dead \n", get_time() - phi[i].start, phi[i].id);
+			i = 0;
+			//break ;
 			return(0);
 		}
 		else
@@ -211,5 +219,22 @@ int main (int ac, char **av)
 	ft_pthread(phi);
 	if (phi->num_philos > 0)
 		ft_check_death(phi);
+	// int i;
+	// i = 0;
+	// while(i < phi->num_philos)
+	// {
+	// 	pthread_join(phi[i].ph, NULL);
+	// 	i++;
+	// }
+
+	// i = 0;
+	// while(i < phi->num_of_eating)
+	// {
+	// 	pthread_mutex_destroy(phi[i].fork);
+	// 	pthread_mutex_destroy(phi[i].l_eat);
+	// 	pthread_mutex_destroy(phi[i].n_eat);
+	// 	pthread_mutex_destroy(phi[i].print);
+	// 	i++;
+	// }
 	return(0);
 }
